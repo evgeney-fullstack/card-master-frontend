@@ -1,0 +1,412 @@
+.cardsLayoutContainer {
+  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.backButton {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 8px 12px;
+  margin-right: 15px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.backButton:hover {
+  background-color: #f0f0f0;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin: 0;
+  color: #333;
+}
+
+.searchContainer {
+  margin-bottom: 20px;
+  display: grid;
+}
+
+.searchInput {
+  /* width: 100%; */
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.cardsContainer {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 70px; /* Добавляем отступ снизу для кнопки */
+}
+
+.emptyState {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.cardsList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 100%;
+  overflow-y: auto;
+  /* padding-right: 5px; */
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  height: 150px;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+  perspective: 1000px;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.cardFront, .cardBack {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  /* padding: 20px; */
+  box-sizing: border-box;
+  border-radius: 8px;
+    overflow-y: auto; /* Добавляем вертикальную прокрутку при необходимости */ 
+}
+
+.cardFront {
+  background-color: #f8f9fa;
+  border: 1px solid #e0e0e0;
+  
+}
+
+.cardBack {
+  background-color: #e3f2fd;
+  transform: rotateY(180deg);
+  border: 1px solid #bbdefb;
+}
+
+.cardContent {
+  text-align: center;
+  font-size: 1.2rem;
+  
+}
+
+
+
+.addCardButton {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 33.33%;
+  max-width: 400px;
+  min-width: 200px;
+  padding: 15px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.addCardButton:hover {
+  background-color: #45a049;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.addCardButton:active {
+  transform: translateX(-50%) translateY(1px);
+}
+
+.addCardButton:disabled {
+  background-color: #a5d6a7;
+  cursor: not-allowed;
+  transform: translateX(-50%);
+}
+
+/* Стили для скролла */
+.cardsList::-webkit-scrollbar {
+  width: 8px;
+}
+
+.cardsList::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.cardsList::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.cardsList::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
+
+
+/* ... предыдущие стили ... */
+
+/* Стили для модального окна */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 70%;
+  max-width: 500px;
+  padding: 25px;
+  animation: modalAppear 0.3s ease-out;
+}
+
+
+
+.modalTitle {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #555;
+}
+
+.inputField {
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 60px;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+}
+
+.checkboxGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.checkboxInput {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.modalButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.modalButton {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.submitButton {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.submitButton:hover:not(:disabled) {
+  background-color: #45a049;
+}
+
+.submitButton:disabled {
+  background-color: #a5d6a7;
+  cursor: not-allowed;
+}
+
+.cancelButton {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #ddd;
+}
+
+.cancelButton:hover:not(:disabled) {
+  background-color: #e9e9e9;
+}
+
+.snackbar {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: fadeInOut 2.5s ease-in-out;
+}
+
+
+/* Стили для действий с карточкой */
+.cardActions {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+  z-index: 10;
+}
+
+.actionButton {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: none;
+  background: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s;
+}
+
+.actionButton:hover {
+  transform: scale(1.1);
+}
+
+.deleteAction {
+  color: #f44336;
+}
+
+
+
+/* Дополнительные стили для модалок */
+.errorText {
+  color: #f44336;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+
+/* ... существующие стили ... */
+
+.header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.repeatButton {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 20px 60px;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s;
+  z-index: 10;
+}
+
+.repeatButton:hover {
+  background-color: #0b7dda;
+  box-shadow: 0 4px 10px #0003;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.noCards {
+  display: none;
+}
+
+/* Адаптивность для шапки */
+@media (max-width: 768px) {
+  .header {
+    flex-wrap: wrap;
+  }
+  
+  .title {
+    order: 1;
+    width: 100%;
+    text-align: center;
+    margin: 10px;
+  }
+  
+  .repeatButton {
+    position: static;
+    transform: none;
+    margin: 0 auto;
+    order: 2;
+  }
+
+  .repeatButton:hover {
+  transform: scale(0.95);
+}
+  
+  .propertyContainer {
+    order: 3;
+    margin-left: auto;
+    margin-top: 10px;
+  }
+}
